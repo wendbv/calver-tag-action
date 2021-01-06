@@ -1,0 +1,23 @@
+{
+  "name": "calver-tag-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wendbv/calver-tag-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wendbv/calver-tag-action-action/issues"
+  },
+  "homepage": "https://github.com/wendbv/calver-tag-action-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4",
+    "@actions/github": "^4.0.0",
+    "semver": "^7.3.4"
+  }
+}

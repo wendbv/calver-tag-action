@@ -1,0 +1,19 @@
+name: "GitHub Tag using a calendar version"
+description: "Tag commits with a calendar version"
+branding:
+  icon: "git-merge"
+  color: "green"
+inputs:
+  prerelease:
+    description: "If set, tag the version as prerelease - set to e.g. alpha or beta"
+    required: false
+  prefix:
+    description: "Prefix for tags (default: `v`)."
+    required: true
+    default: "v"
+outputs:
+  version:
+    description: "Date version"
+runs:
+  using: "node12"
+  main: "dist/index.js"

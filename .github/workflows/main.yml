@@ -1,0 +1,12 @@
+on: [push]
+
+jobs:
+  tag_release:
+    runs-on: ubuntu-latest
+    name: Tag release
+    steps:
+      - name: Tag version
+        uses: wendbv/calver-tag-action@v1
+        id: tag-version
+      - name: Get the output version
+        run: echo "The new version is was ${{ steps.tag-version.outputs.version }}"

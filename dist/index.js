@@ -15,6 +15,7 @@ async function run() {
     try {
         const prerelease = getInput('prerelease', { required: false });
         const prefix = getInput('prefix');
+        const outputOnly = getInput('output-only', { required: false });
 
         const currentVersionTag = await getCurrentTag();
 
@@ -28,26 +29,28 @@ async function run() {
 
         console.log(`Next version: ${nextVersion}`);
 
-        await exec(`git tag ${nextVersion}`);
+        if (!outputOnly) {
+            await exec(`git tag ${nextVersion}`);
 
-        try {
-            await execGetOutput(`git push origin ${nextVersion}`);
-        } catch (error) {
-            const errorMessage = `${error}`;
+            try {
+                await execGetOutput(`git push origin ${nextVersion}`);
+            } catch (error) {
+                const errorMessage = `${error}`;
 
-            if (
-                !errorMessage.includes('reference already exists') &&
-                !errorMessage.includes(
-                    'Updates were rejected because the tag already exists in the remote.'
-                ) &&
-                !errorMessage.includes('shallow update not allowed')
-            ) {
-                throw error;
+                if (
+                    !errorMessage.includes('reference already exists') &&
+                    !errorMessage.includes(
+                        'Updates were rejected because the tag already exists in the remote.'
+                    ) &&
+                    !errorMessage.includes('shallow update not allowed')
+                ) {
+                    throw error;
+                }
+
+                console.log(
+                    `It seems the version ${nextVersion} was already created on origin in the meanwhile, skipping...`
+                );
             }
-
-            console.log(
-                `It seems the version ${nextVersion} was already created on origin in the meanwhile, skipping...`
-            );
         }
 
         setOutput('version', nextVersion);
@@ -99,7 +102,7 @@ function getPrereleaseVersion(previousVersionTags, prerelease) {
     const nextVersion = getNextDateVersion(previousVersionTags);
     const nextVersionParts = nextVersion.split('.');
 
-    const prereleaseVersion = 0;
+    let prereleaseVersion = 0;
     while (
         _tagExists(nextVersionParts, previousVersionTags, [
             prerelease,
@@ -113,7 +116,7 @@ function getPrereleaseVersion(previousVersionTags, prerelease) {
 }
 
 function _tagExists(tagParts, previousVersionTags, prereleaseParts) {
-    const newTag = tagParts.join('.');
+    let newTag = tagParts.join('.');
 
     if (prereleaseParts) {
         const [prerelease, prereleaseVersion] = prereleaseParts;
@@ -148,8 +151,8 @@ function getDateParts() {
 }
 
 async function execGetOutput(command) {
-    const collectedOutput = [];
-    const collectedErrorOutput = [];
+    let collectedOutput = [];
+    let collectedErrorOutput = [];
 
     const options = {
         listeners: {

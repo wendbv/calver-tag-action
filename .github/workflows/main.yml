@@ -11,4 +11,4 @@ jobs:
         uses: wendbv/calver-tag-action@main
         id: tag-version
       - name: Get the output version
-        run: echo "The new version is was ${{ steps.tag-version.outputs.version }}"
+        run: echo "The new version is ${{ steps.tag-version.outputs.version }}"

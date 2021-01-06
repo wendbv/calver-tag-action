@@ -11,6 +11,9 @@ inputs:
     description: "Prefix for tags (default: `v`)."
     required: true
     default: "v"
+  output-only:
+    description: "Only output the new version for usage in another action"
+    required: false
 outputs:
   version:
     description: "Date version"

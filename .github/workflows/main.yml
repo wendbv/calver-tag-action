@@ -5,8 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Tag release
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Tag version
-        uses: wendbv/calver-tag-action@v1
+        uses: wendbv/calver-tag-action@main
         id: tag-version
       - name: Get the output version
         run: echo "The new version is was ${{ steps.tag-version.outputs.version }}"

@@ -8,7 +8,7 @@ async function run() {
     try {
         const prerelease = getInput('prerelease', { required: false });
         const prefix = getInput('prefix');
-        const outputOnly = getInput('output-only', { required: false });
+        const outputOnly = getInput('output-only', { required: false }) === 'true';
 
         const currentVersionTag = await getCurrentTag();
 
@@ -44,6 +44,8 @@ async function run() {
                     `It seems the version ${nextVersion} was already created on origin in the meanwhile, skipping...`
                 );
             }
+        } else {
+            console.log(`Only outputting version because output-only is set to ${outputOnly}`);
         }
 
         setOutput('version', nextVersion);
@@ -55,7 +57,7 @@ async function run() {
 run();
 
 async function getCurrentTag() {
-    await exec('git fetch --tags');
+    await exec('git fetch --tags -f');
 
     // First Check if there is already a release tag at the head...
     const currentTags = await execGetOutput(

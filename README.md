@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - uses: wendbv/calver-tag-action@v2021
 ```
 
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@2021
+      - uses: actions/checkout@v2
       - uses: wendbv/calver-tag-action@v2021
         with:
           prerelease: 'beta'
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - uses: wendbv/calver-tag-action@v2021
         id: tag-version
       - name: Get the output version

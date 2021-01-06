@@ -46,7 +46,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: wendbv/calver-tag-action@v2021
         with:
-          prerelease: 'beta'
+          prerelease: beta
           prefix: ''
 ```
 You can add `output-only` to only output the new version and don't actually tag the commit.
@@ -61,6 +61,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: wendbv/calver-tag-action@v2021
         id: tag-version
+        with:
+          output-only: true
       - name: Get the output version
         run: echo "The new version is was ${{ steps.tag-version.outputs.version }}"
 ```

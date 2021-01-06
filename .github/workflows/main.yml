@@ -9,6 +9,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Tag version
         uses: wendbv/calver-tag-action@main
+        with:
+          output-only: true
         id: tag-version
       - name: Get the output version
         run: echo "The new version is ${{ steps.tag-version.outputs.version }}"

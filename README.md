@@ -1,6 +1,6 @@
-# GitHub Tag using a calendar version
+# GitHub Tag using Calendar Versioning
 
-Create a tag using a calendar version, e.g. `v2021.1.0`.
+Create a tag using Calendar Versioning, e.g. `v2021.1.0`.
 
 ## Inputs
 
@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: wendbv/calver-tag-action@v1
+      - uses: wendbv/calver-tag-action@v2021
 ```
 
 You can also pass in a prerelease and disable the prefix, this will generate a version like `2021.1.0-beta.0`.
@@ -43,8 +43,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
-      - uses: wendbv/calver-tag-action@v1
+      - uses: actions/checkout@2021
+      - uses: wendbv/calver-tag-action@v2021
         with:
           prerelease: 'beta'
           prefix: ''
@@ -59,7 +59,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: wendbv/calver-tag-action@v1
+      - uses: wendbv/calver-tag-action@v2021
         id: tag-version
       - name: Get the output version
         run: echo "The new version is was ${{ steps.tag-version.outputs.version }}"

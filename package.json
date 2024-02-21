@@ -1,8 +1,8 @@
 {
   "name": "calver-tag-action",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wendbv/calver-tag-action.git"
@@ -15,9 +15,9 @@
   },
   "homepage": "https://github.com/wendbv/calver-tag-action-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.4",
-    "@actions/github": "^4.0.0",
-    "semver": "^7.3.4"
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/github": "^6.0.0",
+    "semver": "^7.6.0"
   }
 }

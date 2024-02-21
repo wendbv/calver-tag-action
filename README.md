@@ -8,7 +8,7 @@ Create a tag using Calendar Versioning, e.g. `v2021.1.0`.
 If set, tag the version as prerelease - set to e.g. alpha or beta
 
 ### `prefix`
-**Required** Prefix The name of the person to greet. Default `"v"`.
+**Required** Prefix The prefix for the version Default `"v"`.
 
 ### `output-only`
 Only outputs the new version and don't actually tag the commit
@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: wendbv/calver-tag-action@v1
+      - uses: wendbv/calver-tag-action@v2.0.0
 ```
 
 You can also pass in a prerelease and disable the prefix, this will generate a version like `2021.1.0-beta.0`.
@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: wendbv/calver-tag-action@v1
+      - uses: wendbv/calver-tag-action@v2.0.0
         with:
           prerelease: beta
           prefix: ''
@@ -59,7 +59,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: wendbv/calver-tag-action@v1
+      - uses: wendbv/calver-tag-action@v2
         id: tag-version
         with:
           output-only: true

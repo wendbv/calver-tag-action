@@ -8,7 +8,7 @@ Create a tag using Calendar Versioning, e.g. `v2021.1.0`.
 If set, tag the version as prerelease - set to e.g. alpha or beta
 
 ### `prefix`
-**Required** Prefix The prefix for the version Default `"v"`.
+**Required** Default `"v"`.
 
 ### `output-only`
 Only outputs the new version and don't actually tag the commit
